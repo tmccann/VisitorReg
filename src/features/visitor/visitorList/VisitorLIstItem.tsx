@@ -3,14 +3,16 @@ import { AppVisitors } from "../../../app/types/visitors";
 
 type Props = {
   visitor: AppVisitors
+  deleteVisitor: (visitorId:string) => void
 }
 
-export default function VisitorLIstItem({visitor}: Props) {
+
+export default function VisitorLIstItem({visitor, deleteVisitor}: Props) {
   return (
   
         <Segment clearing>
             <span>{visitor.name}</span>
-            <Button color='teal' floated="right" content='sign Out' />
+            <Button color='red' floated="right" content='sign Out' onClick={()=> deleteVisitor(visitor.id)} />
         </Segment>
   )
 } 

@@ -1,6 +1,6 @@
 import { Container } from 'semantic-ui-react'
-import VisitorDashboard from '../../features/visitor/visitorDashboard/VisitorDashboard'
 import NavBar from '../../nav/NavBar'
+import { Outlet } from 'react-router-dom'
 
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
     <>
       <NavBar />
       <Container className='main'>
-      <VisitorDashboard />
+      <Outlet />
       </Container>
   
     </>
