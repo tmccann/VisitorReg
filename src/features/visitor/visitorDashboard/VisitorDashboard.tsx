@@ -1,37 +1,24 @@
 import { Grid, GridColumn } from "semantic-ui-react";
 import VisitorList from "../visitorList/VisitorList";
 import VisitorForm from '../form/VisitorForm'
-import { sampleData } from "../../../app/api/sampleData";
-import { useEffect, useState } from "react";
-import { AppVisitors } from "../../../app/types/visitors";
+
+import { useAppSelector } from "../../../app/store/store";
 
 
 
 export default function VisitorDashboard() {
-  const [visitors,setVisitors]=useState<AppVisitors[]>([])
+  
 
-  useEffect(() => {  
-    setVisitors(sampleData)
-  },[])
-
-  function addVisitor(e: AppVisitors){
-    setVisitors(prevState => {
-      return [...prevState, e]
-    })
-  }
-
-  function deleteVisitor(visitorId:string){
-    setVisitors(visitors.filter(visit => visit.id !== visitorId))
-  }
+  const{visitors} = useAppSelector(state => state.visitors)
   
 
   return (
     <Grid>
       <GridColumn width={10}>
-        <VisitorList visitors={visitors} deleteVisitor={deleteVisitor}/>
+        <VisitorList  visitors={visitors}/>
       </GridColumn>
       <GridColumn width={6}>
-        <VisitorForm  addVisitor={addVisitor}/>
+        <VisitorForm />
       </GridColumn>
     </Grid>
   )

@@ -1,16 +1,15 @@
 import { ChangeEvent, useState } from "react";
 import { Button, Form, FormField, Header, Segment } from "semantic-ui-react";
 import { AppVisitors } from "../../../app/types/visitors";
+import { createVisitor } from "../visitorSlice";
 import { createId } from "@paralleldrive/cuid2";
+import { useAppDispatch } from "../../../app/store/store";
 
-type Props ={
-        
-    addVisitor:(e:AppVisitors) => void;
-}
 
-export default function VisitorForm({addVisitor}: Props) {
-  
 
+
+export default function VisitorForm() {
+    const dispatch = useAppDispatch()
     const intialState ={
         name:'',
         company:'',
@@ -19,7 +18,9 @@ export default function VisitorForm({addVisitor}: Props) {
     const [values, setValues]= useState(intialState)
 
     function onSubmit (){
-        addVisitor({...values, id: createId(), date:'2024-07-18'})
+        console.log(values)
+        dispatch(createVisitor({...values, id: createId(), date:'2024-07-18'}))
+        setValues(intialState)
     }
 
     function onInputChange( e: ChangeEvent<HTMLInputElement>){

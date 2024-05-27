@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../layout/App";
 import VisitorDashboard from "../../features/visitor/visitorDashboard/VisitorDashboard";
+import Scratch from "../../features/scratch/Scratch";
 
 export  const router = createBrowserRouter([
     {
@@ -8,7 +9,7 @@ export  const router = createBrowserRouter([
         element: <App />,
         children: [
             {path: '/visitors', element: <VisitorDashboard />},
-            {path: '/loggin'}
+            {path: '/scratch', element: <Scratch />},
         ]
     }
 ])

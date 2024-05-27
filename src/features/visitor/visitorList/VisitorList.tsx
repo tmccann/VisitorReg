@@ -4,17 +4,17 @@ import VisitorLIstItem from "./VisitorLIstItem";
 
 type Props = {
   visitors: AppVisitors[]
-  deleteVisitor: (visitorId:string) => void
 }
 
-export default function VisitorList({visitors, deleteVisitor}: Props) {
+
+export default function VisitorList({visitors}: Props) {
   return (
     <>  
       {visitors.map((visitor)=>(
         <VisitorLIstItem
         key={visitor.id}
         visitor={visitor} 
-        deleteVisitor={deleteVisitor}/>
+      />
       ))}
     </>
   )
