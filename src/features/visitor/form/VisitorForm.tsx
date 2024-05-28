@@ -1,64 +1,70 @@
-import { ChangeEvent, useState } from "react";
-import { Button, Form, FormField, Header, Segment } from "semantic-ui-react";
-import { AppVisitors } from "../../../app/types/visitors";
+import { Button, Form, FormInput, FormSelect, Header, Segment } from "semantic-ui-react";
 import { createVisitor } from "../visitorSlice";
 import { createId } from "@paralleldrive/cuid2";
-import { useAppDispatch } from "../../../app/store/store";
+import { useAppDispatch, useAppSelector } from "../../../app/store/store";
+import { Controller, FieldValues, useForm} from "react-hook-form";
+import { useParams } from "react-router-dom";
+import { employeeOptions } from "./employeeOptions";
 
 
 
 
 export default function VisitorForm() {
+    const {register, handleSubmit, control, setValue,
+        formState: {errors, isValid, isSubmitting},reset} = useForm({
+        mode: 'onTouched'
+    })
+    let { id } = useParams()
+    const visitor = useAppSelector(state => state.visitors.visitors.find(e => e.id === id))
     const dispatch = useAppDispatch()
-    const intialState ={
-        name:'',
-        company:'',
-        visiting:'',
-    }
-    const [values, setValues]= useState(intialState)
 
-    function onSubmit (){
-        console.log(values)
-        dispatch(createVisitor({...values, id: createId(), date:'2024-07-18'}))
-        setValues(intialState)
-    }
 
-    function onInputChange( e: ChangeEvent<HTMLInputElement>){
-        const{name, value } = e.target
-        setValues({...values, [name]: value})
+    function onSubmit (data: FieldValues){
+        console.log(data)
+        dispatch(createVisitor({...data, id: createId(), date:'2024-07-18'}))
+        reset()
         
     }
+
+
  
   return (
     <Segment clearing>
         <Header content='Visitor Details' />
-        <Form onSubmit={onSubmit}>
-            <FormField>
-                <input 
-                onChange={e=> onInputChange(e)}
-                name="name"
-                value={values.name}
-                type="text" 
-                placeholder="Name" />
-            </FormField>
-            <FormField>
-                <input 
-                onChange={e=> onInputChange(e)}
-                name="company"
-                value={values.company}
-                type="text" 
-                placeholder="Company" />
-            </FormField>
-            <FormField>
-                <input
-                onChange={e=> onInputChange(e)}
-                name="visiting"
-                value={values.visiting} 
-                type="text" 
-                placeholder="Visiting" />
-            </FormField>
-            <Button type="submit" floated="right" positive content='Submit' />
-            <Button type="button" floated="right" content='Cancel' />
+        <Form onSubmit={handleSubmit(onSubmit)}>
+            <FormInput
+                placeholder="Name"
+                defaultValue={visitor?.name|| ''}
+                {...register('name', {required:true})}
+                error={errors.name && 'name is required'}
+                 />
+           
+           <FormInput
+                placeholder="Company"       
+                defaultValue={visitor?.company || ''}
+                {...register('company', {required:true})}
+                error={errors.company && 'company is required'}
+                />
+        <Controller name='visiting'
+                    control={control}
+                    rules={{required: 'visiting is required'}}
+                    defaultValue={visitor?.visiting}
+                    render={({field})=>(
+                        <FormSelect
+                        options={employeeOptions}
+                        placeholder="Visiting" 
+                        clearable
+                        {...field}
+                        onChange={(_, d)=> setValue('visiting', d.value,{shouldValidate: true})}
+                        error={errors.visiting && 'visiting is required'}
+
+                        />
+                    )}
+                    />
+      
+     
+            <Button loading={isSubmitting} disabled={!isValid} type="submit" floated="right" positive content='Submit' />
+            <Button loading={isSubmitting} type="button" floated="right" content='Cancel' />
         </Form>
     </Segment>
    
