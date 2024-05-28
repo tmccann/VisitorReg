@@ -1,12 +1,19 @@
 import { NavLink } from "react-router-dom";
-import { Button, Menu, MenuItem } from "semantic-ui-react";
-import SignedOut from "./SignedOut";
-import SignedIn from "./SignedIn";
-import { useState } from "react";
+import { Menu, MenuItem } from "semantic-ui-react";
+
 
 export default function NavBar() {
 
-const [auth,setAuth] = useState(true)
+// const [auth,setAuth] = useState(true)
+
+//   function seedData(){
+//         sampleData.forEach(async visitor =>{
+//                 const {id,...rest} = visitor
+//                 await setDoc(doc(db, 'visitor', id),{
+//                         ...rest
+//                 })
+//         })
+//   }
   return (
         <Menu inverted fixed="top">
            
@@ -18,8 +25,19 @@ const [auth,setAuth] = useState(true)
                         </div>
                 </MenuItem>
                 <MenuItem name="Visitors" as={NavLink} to='/visitors' />
-                <MenuItem name="Scratch" as={NavLink} to='/scratch' />
-                {auth ? <SignedIn setAuth={setAuth}/>:<SignedOut setAuth={setAuth}/> }
+                {/* <MenuItem name="Scratch" as={NavLink} to='/scratch' /> */}
+                {import.meta.env.DEV
+                //  && (
+                //         <MenuItem>
+                //         <Button 
+                //         inverted
+                //         color="teal"
+                //         content='seed data'
+                //         onClick={seedData} />
+                //         </MenuItem>
+                // )
+                }
+                {/* {auth ? <SignedIn setAuth={setAuth}/>:<SignedOut setAuth={setAuth}/> } */}
                
         </Menu>
   )

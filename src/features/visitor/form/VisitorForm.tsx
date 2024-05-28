@@ -1,10 +1,10 @@
 import { Button, Form, FormInput, FormSelect, Header, Segment } from "semantic-ui-react";
-import { createVisitor } from "../visitorSlice";
-import { createId } from "@paralleldrive/cuid2";
-import { useAppDispatch, useAppSelector } from "../../../app/store/store";
+import { useAppSelector } from "../../../app/store/store";
 import { Controller, FieldValues, useForm} from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { employeeOptions } from "./employeeOptions";
+import { Timestamp, collection, doc, setDoc } from "firebase/firestore";
+import { db } from "../../../app/config/firebase";
 
 
 
@@ -14,14 +14,26 @@ export default function VisitorForm() {
         formState: {errors, isValid, isSubmitting},reset} = useForm({
         mode: 'onTouched'
     })
-    let { id } = useParams()
+    const { id } = useParams()
     const visitor = useAppSelector(state => state.visitors.visitors.find(e => e.id === id))
-    const dispatch = useAppDispatch()
+  
 
+    async function createVisitor(data:FieldValues){
+        const newVisitorRef = doc(collection(db,'visitor'))
+        await setDoc(newVisitorRef,{
+            ...data,
+            date: Timestamp.now()
+        })
+        return newVisitorRef
+    }
 
-    function onSubmit (data: FieldValues){
-        console.log(data)
-        dispatch(createVisitor({...data, id: createId(), date:'2024-07-18'}))
+    async function onSubmit (data: FieldValues){
+        try {
+            await createVisitor(data)
+            
+        } catch (error) {
+            console.log(error)
+        }
         reset()
         
     }

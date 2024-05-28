@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit"
-import { sampleData } from "../../app/api/sampleData"
+import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 import { AppVisitors } from "../../app/types/visitors"
+import { Timestamp } from "firebase/firestore"
 
 type State ={
     visitors:AppVisitors[]
@@ -8,13 +8,26 @@ type State ={
 
 
 const initialState : State ={
-    visitors: sampleData
+    visitors: []
 }
 
 export const visitorSlice = createSlice({
     name: 'visitors',
     initialState,
     reducers:{
+        
+        setVisitors:{
+            reducer:(state, action: PayloadAction<AppVisitors[]>)=>{
+                state.visitors = action.payload
+        } ,
+         prepare : (visitors: any)=>{
+            const mapped  = visitors.map(( e:any) =>{
+                return{ ...e, date:(e.date as Timestamp).toDate().toDateString()}
+            });
+            return {payload: mapped}
+         }
+        },
+
         createVisitor:(state,action)=>{
             state.visitors.push(action.payload)
         },
@@ -27,4 +40,4 @@ export const visitorSlice = createSlice({
 })
 
 
-export const {createVisitor, deleteVisitor} = visitorSlice.actions
+export const {createVisitor, deleteVisitor, setVisitors} = visitorSlice.actions
