@@ -21,7 +21,7 @@ export default function VisitorLIstItem({visitor}: Props) {
   return (
   
         <Segment clearing>
-            <span>{visitor.name}</span>
+            <span style={{fontSize:"2rem", margin:'2rem'}}>{visitor.name}</span>
             <Button onClick={deleteVisitor} color="green" floated="right"content='Sign out' />
         </Segment>
   )

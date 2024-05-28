@@ -75,7 +75,7 @@ export default function VisitorForm() {
                     />
       
      
-            <Button loading={isSubmitting} disabled={!isValid} type="submit" floated="right" positive content='Submit' />
+            <Button loading={isSubmitting} disabled={!isValid} type="submit" floated="right" positive content='Sign in' />
             <Button loading={isSubmitting} type="button" floated="right" content='Cancel' />
         </Form>
     </Segment>
