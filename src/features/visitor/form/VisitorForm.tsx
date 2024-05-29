@@ -34,7 +34,11 @@ export default function VisitorForm() {
         } catch (error) {
             console.log(error)
         }
-        reset()
+        reset({
+            name: '',
+            company: '',
+            visiting: ''
+          });
         
     }
 
