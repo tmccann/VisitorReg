@@ -24,7 +24,7 @@ export default function NavBar() {
                         <p className="logoSecondaryColor">Scotland</p>
                         </div>
                 </MenuItem>
-                <MenuItem name="Visitors" as={NavLink} to='/visitors' />
+                <MenuItem name="Visitors" as={NavLink} to='/' />
                 {/* <MenuItem name="Scratch" as={NavLink} to='/scratch' /> */}
                 {import.meta.env.DEV
                 //  && (

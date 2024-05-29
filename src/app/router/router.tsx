@@ -8,7 +8,7 @@ export  const router = createBrowserRouter([
         path: '/',
         element: <App />,
         children: [
-            {path: '/visitors', element: <VisitorDashboard />},
+            {path: '/', element: <VisitorDashboard />},
             {path: '/scratch', element: <Scratch />},
         ]
     }
