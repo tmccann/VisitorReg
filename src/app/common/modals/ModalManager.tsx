@@ -1,18 +1,21 @@
+import LoginForm from "../../../features/auth/LoginForm"
 import TestModal from "../../../features/scratch/TestModal"
 import { useAppSelector } from "../../store/store"
 
 export default function ModalManager() {
 
     const modalLookup={
-        TestModal
+        TestModal,
+        LoginForm,
     }
 
     const  {type, data, open } = useAppSelector(state => state.modals)
     let renderModal
     if(open && type){
         const ModalComponent = (modalLookup as any)[type]
+        renderModal = <ModalComponent data={data}/>
     }
   return (
-    <div>ModalManager</div>
+    <span>{renderModal}</span>
   )
 }

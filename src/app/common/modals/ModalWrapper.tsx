@@ -6,7 +6,7 @@ import { closeModal } from "./modalSlice"
 
 type Props = {
     children: ReactNode
-    header: string
+    header?: string
 } & ModalProps
 
 export default function ModalWrapper({children, header, ...props}: Props) {
