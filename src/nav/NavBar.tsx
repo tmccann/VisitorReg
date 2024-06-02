@@ -28,7 +28,7 @@ export default function NavBar() {
                         </div>
                 </MenuItem>
                 <MenuItem name="Visitors" as={NavLink} to='/' />
-                <MenuItem name="Scratch" as={NavLink} to='/scratch' />
+                {/* <MenuItem name="Scratch" as={NavLink} to='/scratch' /> */}
                 {/* {import.meta.env.DEV
                 //  && (
                 //         <MenuItem>
