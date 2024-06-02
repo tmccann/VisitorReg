@@ -18,7 +18,8 @@ export const authSlice = createSlice({
         signIn: (state, action)=>{
             state.authenticated = true
             state.currentUser={
-                userName: action.payload.userName
+                userName: action.payload.userName,
+                photoUrl: '/user.png'
             }
         },
 
