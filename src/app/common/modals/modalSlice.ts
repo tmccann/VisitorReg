@@ -7,6 +7,8 @@ type State ={
 
 }
 
+
+// intial values
 const initialState: State ={
     open: false,
     type:null,
@@ -16,12 +18,14 @@ const initialState: State ={
 export const modalSlice = createSlice ({
     name: 'modal',
     initialState,
+    // when open it take a payload an information from open modal 
     reducers:{
         openModal:(state, action)=>{
-            state.type =action.payload.data
+            state.type =action.payload.type
             state.open = true
             state.data =action.payload.data
         },
+    // when closing modal on state.open value need changes
         closeModal:(state)=>{
             state.type = null
             state.open = false
