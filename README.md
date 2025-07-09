@@ -1,30 +1,39 @@
-# React + TypeScript + Vite
+# Visitor Registration App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple web app that tracks visitors entering and leaving a building. Built originally for my previous workplace to replace a handwritten sign-in sheet, it allows staff to log visitors in and out in real time using a simple interface.
 
-Currently, two official plugins are available:
+### 🔗 Live Demo  
+[https://tw-visit-reg.web.app/](https://tw-visit-reg.web.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✅ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Add new visitors to the system when they arrive
+- Log them out when they leave
+- View a list of current visitors in the building
+- Data is stored in the cloud using Firebase Realtime Database
+- Interface is responsive and simple to use
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## 🛠️ Tech Used
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- HTML
+- CSS
+- JavaScript
+- Firebase (Realtime Database + Hosting)
+
+---
+
+## 🚧 Status
+
+This was a hands-on learning project that I used in a real-world setting. The core functionality is complete and works reliably. Future improvements might include user authentication or exporting visitor logs for record keeping.
+
+---
+
+## 🙋 Why I Built It
+
+I built this as a small practical tool for my previous employer, and as a way to push my learning forward. It helped me understand how frontend and backend connect, how to read/write data from a live database, and how to deploy a working app.
+
+
